@@ -11,6 +11,8 @@
 
 BookIt is a modern calendar app made from an idea to reality, designed to simplify scheduling and booking meetings. It provides a sleek and intuitive interface for managing appointments and tracking upcoming events, Stay on top of your schedule and improve with our calendar solution.
 
+Interested in exploring our project? Click [here](https://bookit-client-z1ym.onrender.com) to visit!
+
 ## Screenshots
 
 ![image](https://github.com/dachico/BookIt/assets/151663998/620290d8-9e13-4da4-8f71-25f28f55984d)
