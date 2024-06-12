@@ -17,7 +17,7 @@ import {
 import PropTypes from "prop-types";
 
 const url = import.meta.env.VITE_BASE_API_URL;
-const socket = io(`${url}`);
+const socket = io(url);
 
 const UserBooking = ({ onClose }) => {
   const { user } = useContext(AuthContext);

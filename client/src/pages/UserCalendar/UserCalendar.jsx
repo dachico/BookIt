@@ -18,7 +18,7 @@ import TimeSlots from "./helpers/TimeSlots";
 import NavBar from "../../components/NavBar/NavBar";
 
 const url = import.meta.env.VITE_BASE_API_URL;
-const socket = io(`${url}`);
+const socket = io(url);
 
 const UserCalendar = () => {
   const {

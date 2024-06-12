@@ -3,10 +3,10 @@ import io from "socket.io-client";
 
 const url = import.meta.env.VITE_BASE_API_URL;
 
-const socket = io(`${url}`);
+const socket = io(url);
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = `${url}`;
+axios.defaults.baseURL = url;
 
 export const createBookingsForUsers = async (bookingData) => {
   try {
