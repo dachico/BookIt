@@ -18,7 +18,7 @@ export const useSocket = (user, setBookings, fetchBookings) => {
     return () => {
       socket.emit("leave", user._id);
       socket.off("newBooking");
-      socket.disconnect();
+      // socket.disconnect();
     };
   }, [user, setBookings, fetchBookings]);
 
