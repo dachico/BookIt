@@ -16,12 +16,14 @@ export const AuthProvider = ({ children }) => {
     try {
       const currentUser = await api.checkLoggedIn();
       setUser(currentUser);
+      setLoading(false);
     } catch (err) {
       try {
         const newAccessToken = await api.refreshToken();
         if (newAccessToken) {
           const currentUser = await api.checkLoggedIn();
           setUser(currentUser);
+          setLoading(false);
         }
       } catch (refreshError) {
         console.warn("Couldnt refresh your token, log in", refreshError);
@@ -43,7 +45,7 @@ export const AuthProvider = ({ children }) => {
       navigate("/calendar");
     } catch (error) {
       if (error.response?.data?.message) {
-        toast.error(error.response.data.message);
+        toast.error(error.response.data.message || error.message);
       }
       console.error("Login failed:", error);
     }
@@ -57,7 +59,7 @@ export const AuthProvider = ({ children }) => {
       navigate("/login");
     } catch (error) {
       if (error.response?.data?.message) {
-        toast.error(error.response.data.message);
+        toast.error(error.response.data.message || error.message);
       }
       console.error("Signup failed:", error);
     }

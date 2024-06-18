@@ -24,12 +24,13 @@ const TimeSlots = () => {
       for (let minute = 0; minute < 60; minute += 15) {
         const slot = selectedDate.hour(hour).minute(minute);
         if (slot.isAfter(now)) {
-          const formattedSlot = slot.format("HH:mm");
           const isBooked = combinedBookings.some(
-            (booking) => dayjs(booking.time).format("HH:mm") === formattedSlot
+            (booking) =>
+              dayjs(booking.time).isSame(slot, "minute") &&
+              dayjs(booking.time).isSame(slot, "day")
           );
           if (!isBooked) {
-            slots.push(formattedSlot);
+            slots.push(slot.format("HH:mm"));
           }
         }
       }
