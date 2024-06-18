@@ -3,27 +3,34 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import PropTypes from "prop-types";
 import * as api from "../api";
+import Spinner from "../utils/Spinner";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const checkAndRefreshToken = async () => {
+    setLoading(true);
     try {
       const currentUser = await api.checkLoggedIn();
       setUser(currentUser);
+      setLoading(false);
     } catch (err) {
       try {
         const newAccessToken = await api.refreshToken();
         if (newAccessToken) {
           const currentUser = await api.checkLoggedIn();
           setUser(currentUser);
+          setLoading(false);
         }
       } catch (refreshError) {
         console.warn("Couldnt refresh your token, log in", refreshError);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,6 +75,10 @@ export const AuthProvider = ({ children }) => {
       console.error("Logout failed:", error);
     }
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <AuthContext.Provider value={{ user, setUser, login, signup, logout }}>
