@@ -1,15 +1,11 @@
 import { promisify } from "util";
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
 import crypto from "crypto";
 import validator from "validator";
-
 import User from "../models/userModel.mjs";
 import catchAsync from "../utils/catchAsync.mjs";
 import AppError from "../utils/appError.mjs";
 import Email from "../utils/email.mjs";
-
-dotenv.config();
 
 const signToken = (id, expiresIn) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn });

@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.mjs",
   "scripts": {
-    "start": "node server.mjs",
-    "dev": "nodemon server.mjs",
-    "start:prod": "NODE_ENV=production nodemon server.mjs"
+    "start": "node -r dotenv/config server.mjs",
+    "dev": "nodemon -r dotenv/config server.mjs",
+    "start:prod": "NODE_ENV=production nodemon -r dotenv/config server.mjs"
   },
   "keywords": [],
   "author": "",

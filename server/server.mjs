@@ -1,10 +1,7 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 import app from "./app.mjs";
 import http from "http";
 import { initializeSocket } from "./socket.mjs";
-
-dotenv.config();
 
 process.on("uncaughtException", (err) => {
   console.log("UNCAUGHT EXCEPTION! 💥 Shutting down...");
