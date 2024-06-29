@@ -12,13 +12,12 @@ export const useBookingHandlers = () => {
     deleteBooking,
   } = useContext(BookingContext);
 
-  const handleBookingSubmit = async (e, newBooking) => {
-    e.preventDefault();
+  const handleBookingSubmit = async (data) => {
     try {
       if (editingBooking) {
-        await updateBooking(editingBooking._id, newBooking);
+        await updateBooking(editingBooking._id, data);
       } else {
-        await createBooking(newBooking);
+        await createBooking(data);
       }
     } catch (error) {
       console.error("Failed to save booking:", error);
